@@ -26,7 +26,6 @@ export default function Header() {
     <header className={`
     sticky mx-auto top-5 z-50 w-95/100 bg-white/30 
     backdrop-blur-md border-b border-gray-200 rounded-[5]
-
     `}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
@@ -67,12 +66,15 @@ export default function Header() {
 
           {/* 4. Mobile Menu Button (Hamburger) */}
           <div className="flex md:hidden items-center">
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-gray-700 hover:text-blue-600 
-              focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 rounded-md p-2"
+            <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className= {
+                `text-gray-700 hover:text-blue-600 
+                focus:outline-none focus-visible:ring-2 
+                focus-visible:ring-blue-600 rounded-md p-2
+                `}
               aria-expanded={isMobileMenuOpen}
               aria-label="Toggle mobile menu"
+              
             >
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 {isMobileMenuOpen ? (
