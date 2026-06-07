@@ -1,0 +1,12 @@
+  --midnight-navy: #0A1526;
+  --not-white: #F4F6F9;
+  --primary-text: #0A1526;
+  --royal-blue: #002366;
+  --secondary-text: #64748B;  
+  --highlighted-text: #1f8200;
+  --border-divider: #E2E8F0;
+  --font-family: Helvetica;
+  --caitee-green: #56bc97;
+  --lime-green: #6ce437;
+  --intel-blue: #4462f6;
+  --dark-blue: #221d57:

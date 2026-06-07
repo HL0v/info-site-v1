@@ -1,8 +1,16 @@
+import Hero from "@/uiComponents/Hero/Hero";
 import Header from "../uiComponents/Header/Header";
-import Image from "next/image";
+
 
 export default function Home() {
   return (
-    <Header/>
+    <>
+      <Header/>
+      {/* <ExtractedHeader /> */}
+      <Hero/>
+      <Hero/>
+      <Hero/>
+
+    </>
   );
 }
