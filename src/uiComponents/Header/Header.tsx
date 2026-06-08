@@ -58,7 +58,7 @@ export default function Header() {
             //scrolled 'isScrolled -> true'
             ? '-translate-y-3 -translate-x-3 shadow-[15px_15px_25px_rgba(0,0,0,0.2)] backdrop-blur-xl border border-white' 
             //top screen 'isScrolled -> false'
-            : 'translate-y-0 translate-x-0 shadow-none'
+            : 'translate-y-0 translate-x-0 shadow-none border border-transparent'
           }
           ${isMobileMenuOpen 
             ? `border border-white`
@@ -83,7 +83,18 @@ export default function Header() {
                   <Link
                     key={link.name}
                     href={link.href}
-                    className="block px-4 py-6 text-lg font-semibold hover:text-[var(--caitee-green)] hover:underline underline-offset-10"
+                    className={`
+                      block px-4 py-6 text-lg 
+                      font-semibold 
+
+                      /* --- HOVER RULES --- */
+                      hover:text-[var(--caitee-green)] hover:underline 
+                      underline-offset-10
+
+                      /* --- SUCCES STATE --- */
+                      active:scale-90 active:text-(--highlighted-text)
+                      
+                      `}
                   >
                     {link.name}
                   </Link>
@@ -125,25 +136,35 @@ export default function Header() {
                 }
             `}
           >
-            <div className="px-4 py-4 space-y-2">
+            <div className="px-4 py-4 space-y-3">
               {navLinks.map((link) => (
               <Link
                   key={link.name}
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={`
-                      block px-3 py-2 rounded-md text-base 
-                      text-[var(--primary-text)] 
-                      hover:text-[var(--caitee-green)] border 
-                      border-transparent hover:border-(--caitee-green) 
-                      [transition-property:opacity,transform] 
-                      ease-in-out transform text-center z-30
-                      shadow-2xl backdrop-blur-xl bg-(--not-white)
-                      
-                      ${isMobileMenuOpen 
-                      ? 'opacity-100 translate-y-0 duration-500 delay-300' 
-                      : 'opacity-0 -translate-y-4 duration-200'
-                  }
+                    block px-3 py-2 rounded-md text-base 
+                    text-[var(--primary-text)] text-center z-30
+                    
+                    /* --- THE TILE EFFECT --- */
+                    shadow-lg backdrop-blur-2xl bg-(--not-white)/80
+                    border border-white/40
+
+                    /* --- ANIMATION RULES --- */
+                    [transition-property:opacity,transform]
+                    ease-in-out transform
+
+                    /* --- HOVER RULES --- */
+                    hover:text-[var(--caitee-green)] hover:border-(--caitee-green)
+                    hover:bg-white/80 hover:shadow-xl
+                    
+                    /* --- SUCCES STATE --- */
+                    active:scale-90 active:bg-(--highlighted-text)
+
+                    ${isMobileMenuOpen 
+                    ? 'opacity-100 translate-y-0 duration-500 delay-300' 
+                    : 'opacity-0 -translate-y-4 duration-200'
+                    }
                   `}>
                   {link.name}
               </Link>

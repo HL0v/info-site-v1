@@ -1,107 +1,66 @@
-'use client'
-import { useEffect, useState } from "react";
+import React from 'react';
 
-const carousel = [
-  'ascensao-fullview.jpg',
-  'eppej-membros-corta-direita.jpg',
-  'eppej-membros-pintados.jpg',
-  'foto-midia-caitee.jpg',
-  'impu_full-ej-mm.jpg',
-  'impulsione-fullview.jpg',
-  'info-girls-sla.jpg',
-  
-];
-
-const Hero  = () => {
-
-  const [currentIndex, setCurrentIndex ] = useState<number>(0);
-  const [isHovered, setIsHovered] = useState<boolean>(false);
-
-  useEffect(() => {
-    
-    if (isHovered) return;
-    const timer = setInterval(() => {
-          setCurrentIndex((prevIndex) => 
-            // If we are at the last image, go back to 0. Otherwise, go to the next one.
-            prevIndex === carousel.length - 1 ? 0 : prevIndex + 1
-          );
-        }, 3000);
-    return() => clearInterval(timer);
-    }, [isHovered]);
-
-  
-
-
-
+export default function HeroWithParticleWave() {
   return (
+    // 1. MAIN BACKGROUND: Uses your requested --not-white variable
+    <section className="relative w-full min-h-[800px] bg-[var(--not-white)] overflow-hidden flex items-center">
+      
+      {/* 2. YOUR HERO CONTENT (z-10 ensures it sits above the background) */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-8 text-white">
+        <h1 className="text-5xl md:text-7xl font-bold leading-tight">
+          Transformações <br />
+          reais com software. <br />
+          <span className="text-white">On demand.</span>
+        </h1>
+        <button className="mt-8 bg-white text-black px-6 py-3 rounded-lg font-semibold flex items-center gap-2 hover:bg-gray-100 transition-colors">
+          Fale com um expert <span className="text-xl">→</span>
+        </button>
+      </div>
 
-    <div className={`
-      flex relative mx-auto 
-      grid-col-2
-      gap-10 my-15 z-20
-    `}>      
+      {/* 3. THE ANIMATED CSS PARTICLE MESH (z-0) */}
+      <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
         
-      
-        <div className={`relative   rounded-3xl bg-(--ghost-white)/10 
-        p-8 backdrop-blur-xl border border-white/20 shadow-2xl
-        text-4xl font-bold
-        `}>       
-          <h2>Materialize Seus Sonhos <br /> Com a
-          <span className={`
-            bg-linear-to-r from-(--highlighted-text) from-10% 
-            to-(--royal-blue) to-90%
-            bg-clip-text text-transparent`
-            }> Info Jr.</span>
-          </h2>
-          
-
-          <div>
-
-          </div>
-          <button className={`
-            mt-6 w-full rounded-xl text-xl
-            bg-(--caitee-green)/50 py-3 font-semibold 
-            transition-all hover:bg-(--highlighted-text)/80 
-            transition-all duration-150
-            hover:scale-110 active:scale-90
-            hover:text-(--not-white)
-            `}
-            onClick={() => window.open(`google.com`)}
-            >
-            Entrar em contato
-          </button>
-        </div>
-      
-      <div className={`
-        box bg-white/10 rounded-4xl
-        shadow-2xl backdrop-blur-xl
-        `}>
+        {/* 3D TILT CONTAINER 
+          'perspective' and 'rotateX' lay the grid down like a floor.
+          'scale' makes it large enough to fill the screen.
+        */}
         <div 
-          className={`relative z-10 w-full max-w-3xl h-[600px] scale-85 overflow-hidden 
-            border border-white/20 rounded-3xl shadow-2xl`}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-            >
-          {/* 2. The Sliding Track: Holds all images in a row */}
+          className="absolute w-[200vw] h-[200vh] [transform:perspective(800px)_rotateX(60deg)_translateY(-100px)_scale(1.5)]"
+          style={{
+            // Radial mask to softly fade out the edges into the background
+            maskImage: 'radial-gradient(ellipse at center, black 10%, transparent 60%)',
+            WebkitMaskImage: 'radial-gradient(ellipse at center, black 10%, transparent 60%)',
+          }}
+        >
+          
+          {/* THE DOT MATRIX CUTOUT
+            This cuts physical holes into the div. Only color behind these holes is visible.
+          */}
           <div 
-            className="flex h-full w-full transition-transform duration-700 ease-in-out "
-            // This inline style moves the track to the left by multiples of 100%
-            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+            className="absolute inset-0"
+            style={{
+              maskImage: 'radial-gradient(circle, black 1.5px, transparent 2px)',
+              maskSize: '32px 32px', // Adjust this to make dots closer or further apart
+              WebkitMaskImage: 'radial-gradient(circle, black 1.5px, transparent 2px)',
+              WebkitMaskSize: '32px 32px',
+            }}
           >
-            {carousel.map((imgUrl, index) => (
-              // 3. The Individual Slides
-              <div key={index} className="h-full w-full flex-shrink-0">
-                <img 
-                  src={imgUrl} 
-                  alt={`Slide ${index + 1}`} 
-                  className="h-full w-full object-cover"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-        </div>
-    </div>
-    )
+            {/* Layer A: The base color of the dots (#64748B) covering everything */}
+            <div className="absolute inset-0 bg-[#64748B] opacity-60"></div>
 
-}; export default Hero; 
+            {/* Layer B: The animated pulse color (#4462f6) sliding over the top 
+              - w-[200%] makes it twice as wide as the screen.
+              - animate-pulse-sweep (from CSS) pulls it to the left forever.
+            */}
+            <div className="absolute inset-0 w-[200%] h-full animate-pulse-sweep">
+              {/* The gradient configuration: mostly transparent, solid blue in the middle, transparent at the end */}
+              <div className="w-full h-full bg-[linear-gradient(to_left,transparent_0%,transparent_30%,#4462f6_50%,transparent_70%,transparent_100%)]"></div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+    </section>
+  );
+}

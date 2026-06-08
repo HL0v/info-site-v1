@@ -27,17 +27,15 @@
 
 }
 @theme {
-  --breakpoint-md: 1200px; 
+  --breakpoint-md: 1200px;
+  --animate-pulse-sweep: sweep 6s linear infinite;
+
 }
-/* @theme gradient {
   
-  --gradient-dark-color: var(--primary-text);
-  --gradient-light-color: var(--royal-blue);
-  --light-blue: #87CEEB;
-  --lighest-blue: #E0F6FF;
-
-
-} */
+@keyframes sweep {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* Slides exactly half its width to loop */
+}
 
 body {
   background: var(--background);
