@@ -17,7 +17,7 @@ const contentData = [
       "Sua empresa merece um site de alto impacto.",
       "Desenvolvemos soluções modernas, rápidas e focadas em resultados.",
       "Transforme sua presença digital e conecte-se com mais clientes agora mesmo."
-    ]
+    ],
   },
   {
     title: "sistemas",
@@ -25,7 +25,7 @@ const contentData = [
       "Sua operação precisa de um sistema sob medida.",
       "Criamos plataformas robustas, escaláveis e focadas em eficiência.",
       "Otimize seus processos e eleve a gestão do seu negócio agora mesmo."
-    ]
+    ],
   }
 ];
 
@@ -61,33 +61,34 @@ export default function Hero() {
 
       {/* 2. YOUR HERO CONTENT (z-10 ensures it sits on top of the background) */}
       <div className={`
-      flex flex-col relative mx-auto 
-      xl:flex-row justify-between
+      flex flex-col items-center relative mx-auto 
+      xl:flex-row xl:justify-between xl:items-start
       gap-10 z-10 my-20
-      px-20
+      px-4 md:px-20
       `}>
   
         {/* The Glass Container */}
         <div className={`
+          w-full xl:w-1/2
           bg-[var(--not-white)]/70 backdrop-blur-xl
-          shadow-2xl rounded-3xl border border-white
-          p-10 
+          shadow-3xl rounded-3xl border border-white
+          p-6 md:p-10 
         `}>
-          <h1 className="text-5xl sm:text-7xl  md:text-7xl font-bold leading-tight xl:w-4/5">
-            Transformações  <br /> software<br />
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight">
+            Transformações <br className="hidden sm:block" /> software<br />
             <span className={`
             bg-linear-to-r from-(--highlighted-text) 
             to-(--royal-blue) 
             bg-clip-text text-transparent
-            
             `} >On demand.</span>
           </h1>
           
           <button className={`
-            mt-8 bg-[var(--not-white)]/70
-            px-6 py-3 rounded-lg font-semibold 
+            mt-6 md:mt-8 bg-[var(--not-white)]/70
+            px-5 py-2.5 md:px-6 md:py-3 rounded-lg font-semibold 
             flex items-center gap-2
-            shadow-xl border border-white
+            shadow-2xl border border-white
+            text-sm md:text-base
 
             /* --- ANIMATION RULES --- */
             transition-all duration-300
@@ -105,12 +106,13 @@ export default function Hero() {
         </div>
       {/* second The Glass Container */}
         <div className={`
+          w-full xl:w-2/5
           bg-[var(--not-white)]/70 backdrop-blur-xl
-          shadow-2xl rounded-3xl border border-white
-          p-10
+          shadow-3xl rounded-3xl border border-white
+          p-6 md:p-10
         `}>
           <h1 className={`
-          text-3xl font-bold relative inline-block pb-2
+          text-2xl md:text-3xl font-bold relative inline-block pb-2
           `}>
             Construção de{' '}
             <span className="relative inline-block overflow-hidden align-bottom">
@@ -142,7 +144,7 @@ export default function Hero() {
           </h1>
 
           <div className={`
-            my-5 text-xl grid [grid-template-areas:'stack']
+            my-4 md:my-5 text-base md:text-xl grid [grid-template-areas:'stack']
             `}>
             {/* Outgoing lines */}
             <div 
@@ -165,11 +167,14 @@ export default function Hero() {
             </div>
           </div>
           
-          <button className={`
-            mt-8 bg-[var(--not-white)]/70
-            px-6 py-3 rounded-lg font-semibold 
+          <button 
+          onClick={() => window.location.href = `/servicos/#${contentData[activeIndex].title}`}
+          className={`
+            mt-6 md:mt-8 bg-[var(--not-white)]/70
+            px-5 py-2.5 md:px-6 md:py-3 rounded-lg font-semibold 
             flex items-center gap-2
-            shadow-xl border border-white
+            shadow-2xl border border-white
+            text-sm md:text-base
 
             /* --- ANIMATION RULES --- */
             transition-all duration-300
@@ -182,7 +187,7 @@ export default function Hero() {
             active:scale-90 active:bg-[var(--highlighted-text)]
             active:border active:border-[var(--highlighted-text)]
           `}>
-            Fale com um expert <span className="text-xl">→</span>
+            Conheça mais Sobre <span className="text-xl">→</span>
           </button>
         </div>
         

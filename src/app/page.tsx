@@ -1,6 +1,7 @@
 import Hero from "@/uiComponents/Hero/Hero";
 import Header from "../uiComponents/Header/Header";
 import CTA from "@/uiComponents/CTA/CTA";
+import ServiceCards from "@/uiComponents/ServiceCards/ServiceCards";
 
 
 export default function Home() {
@@ -8,10 +9,8 @@ export default function Home() {
     <>
       <Header/>
       <Hero/>
+      <ServiceCards/>
       <CTA/>
-      <CTA/>
-      <CTA/>  
-
     </>
   );
 }

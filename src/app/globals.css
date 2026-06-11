@@ -31,8 +31,7 @@
 
 @theme {
   --breakpoint-md: 1200px;
-  --shadow-2xl: 0px 25px 25px rgba(0, 0, 0, 0.40);
-  --shadow-3xl: 0px 25px 25px rgba(0, 0, 0, 0.30);
+  --shadow-3xl: 0px 25px 25px rgba(0, 0, 0, 0.40);
   --shadow-4xl: 25px 25px 25px rgba(0, 0, 0, 0.50); 
   --animate-expand: expand 8s linear forwards;
   --animate-knock-in: knock-in 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
