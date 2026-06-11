@@ -15,7 +15,7 @@ const carousel = [
 
 
 
-const Hero  = () => {
+const CTA  = () => {
 
   const [currentIndex, setCurrentIndex ] = useState<number>(0);
   const [isHovered, setIsHovered] = useState<boolean>(false);
@@ -39,13 +39,15 @@ const Hero  = () => {
   return (
 
     <div className={`
-      flex relative mx-auto 
-      grid-col-2
-      gap-10 my-15 z-20
+      flex flex-col relative mx-auto 
+      lg:flex-row justify between
+      gap-10 z-10 my-20
+      md:grid-cols-2 
     `}>      
         
       
-        <div className={`relative   rounded-3xl bg-(--ghost-white)/10 
+      <div className={`
+        relative w-full lg:w-1/3 rounded-3xl bg-(--ghost-white)
         p-8 backdrop-blur-xl border border-white/20 shadow-2xl
         text-4xl font-bold
         `}>       
@@ -56,11 +58,7 @@ const Hero  = () => {
             bg-clip-text text-transparent`
             }> Info Jr.</span>
           </h2>
-          
 
-          <div>
-
-          </div>
           <button className={`
             
             mt-6 w-full rounded-xl text-xl
@@ -81,17 +79,17 @@ const Hero  = () => {
             >
             Entrar em contato
           </button>
-        </div>
+      </div>
       
       <div className={`
-        box bg-white/10 rounded-4xl
+        box bg-(--not-white) rounded-4xl
         shadow-2xl backdrop-blur-xl
         `}>
         <div 
           className={`
             relative z-10 w-full max-w-3xl h-[600px] scale-85 
-            overflow-hidden border border-white/20 rounded-3xl s
-            hadow-2xl
+            overflow-hidden border border-white/20 rounded-3xl 
+            shadow-4xl
             `}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
@@ -114,8 +112,8 @@ const Hero  = () => {
             ))}
           </div>
         </div>
-        </div>
+      </div>
     </div>
     )
 
-}; export default Hero; 
+}; export default CTA; 

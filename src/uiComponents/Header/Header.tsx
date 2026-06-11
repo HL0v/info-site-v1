@@ -32,7 +32,7 @@ export default function Header() {
   return (
     <>
       {/* 1. THE STATIONARY SOCKET (The Hole) */}
-      <div className="absolute top-20 left-0 right-0 mx-auto w-[85%] h-20 z-0 pointer-events-none">
+      <div className="absolute top-20 left-0 right-0 mx-auto w-[95%] md:w-[85%] h-20 z-10 pointer-events-none z-10">
         <div 
           className={`
             w-full h-full rounded-3xl bg-black/10 
@@ -44,7 +44,7 @@ export default function Header() {
 
       {/* 2. THE STICKY HEADER WRAPPER */}
       
-      <header className="sticky top-20 mx-auto w-[85%] z-30 mt-10 mb-10">
+      <header className="sticky top-20 mx-auto w-[95%] md:w-[85%] z-30 mt-10 mb-10">
         
         {/* THE SINGLE PANE OF GLASS
           This ONE div handles the background, blur, shadow, and borders for EVERYTHING.
@@ -52,17 +52,17 @@ export default function Header() {
         */}
         <div className={`
           relative w-full transition-all duration-1000 ease-out 
-          bg-(--not-white)/70 rounded-3xl overflow-hidden 
+           rounded-3xl overflow-hidden 
           ${
             isScrolled 
             //scrolled 'isScrolled -> true'
-            ? '-translate-y-3 -translate-x-3 shadow-[15px_15px_25px_rgba(0,0,0,0.2)] backdrop-blur-xl border border-white' 
+            ? 'md:-translate-y-3 md:-translate-x-3 shadow-[15px_15px_25px_rgba(0,0,0,0.2)] backdrop-blur-xl border border-white bg-(--not-white)/70' 
             //top screen 'isScrolled -> false'
-            : 'translate-y-0 translate-x-0 shadow-none border border-transparent'
+            : 'md:translate-y-0 md:translate-x-0 shadow-none border border-transparent '
           }
           ${isMobileMenuOpen 
             ? `border border-white`
-            : ``
+            : `border border-transparent`
           }
         `}>
           
@@ -70,13 +70,13 @@ export default function Header() {
           <div className="flex justify-between items-center h-20 max-w-7xl px-4 sm:px-6 lg:px-8">
             
             {/* Logo Area */}
-            <div className="flex-shrink flex items-center max-h-1xl ml-20">
+            <div className="flex-shrink-0 flex items-center max-h-1xl">
               <Link href="/" className="flex items-center gap">
                 <img className="size-20" src="/logo.svg" alt="logo" />
               </Link>
             </div>
 
-            <div className="flex items-center gap-12">
+            <div className="flex items-center gap-4 md:gap-12">
               {/* Desktop Navigation */}
               <nav className="hidden md:flex space-x-10">
                 {navLinks.map((link) => (
@@ -84,15 +84,20 @@ export default function Header() {
                     key={link.name}
                     href={link.href}
                     className={`
-                      block px-4 py-6 text-lg 
+                      block px-4 py-4 text-lg 
                       font-semibold 
 
                       /* --- HOVER RULES --- */
-                      hover:text-[var(--caitee-green)] hover:underline 
+                      hover:text-[var(--caitee-green)] hover:underline
                       underline-offset-10
 
                       /* --- SUCCES STATE --- */
                       active:scale-90 active:text-(--highlighted-text)
+
+                      ${isScrolled 
+                        ? ''
+                        : 'bg-(--not-white)/20 rounded-3xl backdrop-blur-xl'
+                      }
                       
                       `}
                   >
@@ -147,7 +152,7 @@ export default function Header() {
                     text-[var(--primary-text)] text-center z-30
                     
                     /* --- THE TILE EFFECT --- */
-                    shadow-lg backdrop-blur-2xl bg-(--not-white)/80
+                    shadow-xl backdrop-blur-2xl bg-(--not-white)/80
                     border border-white/40
 
                     /* --- ANIMATION RULES --- */
@@ -162,7 +167,7 @@ export default function Header() {
                     active:scale-90 active:bg-(--highlighted-text)
 
                     ${isMobileMenuOpen 
-                    ? 'opacity-100 translate-y-0 duration-500 delay-300' 
+                    ? 'opacity-100 translate-y-0 duration-500 delay-300 ' 
                     : 'opacity-0 -translate-y-4 duration-200'
                     }
                   `}>

@@ -1,64 +1,191 @@
-import React from 'react';
+'use client';
+import { useState, useEffect } from "react";
+import PipesCanvas from "./PipesCanvas";
 
-export default function HeroWithParticleWave() {
-  return (
-    // 1. MAIN BACKGROUND: Uses your requested --not-white variable
-    <section className="relative w-full min-h-[800px] bg-[var(--not-white)] overflow-hidden flex items-center">
+
+const flashpoints = [
+  {name: "Sites"},
+  {name: "Sistemas"},
+
+];
+
+const contentData = [
+  {
+    title: "sites",
+    lines: [
       
-      {/* 2. YOUR HERO CONTENT (z-10 ensures it sits above the background) */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-8 text-white">
-        <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-          Transformações <br />
-          reais com software. <br />
-          <span className="text-white">On demand.</span>
-        </h1>
-        <button className="mt-8 bg-white text-black px-6 py-3 rounded-lg font-semibold flex items-center gap-2 hover:bg-gray-100 transition-colors">
-          Fale com um expert <span className="text-xl">→</span>
-        </button>
+      "Sua empresa merece um site de alto impacto.",
+      "Desenvolvemos soluções modernas, rápidas e focadas em resultados.",
+      "Transforme sua presença digital e conecte-se com mais clientes agora mesmo."
+    ]
+  },
+  {
+    title: "sistemas",
+    lines: [
+      "Sua operação precisa de um sistema sob medida.",
+      "Criamos plataformas robustas, escaláveis e focadas em eficiência.",
+      "Otimize seus processos e eleve a gestão do seu negócio agora mesmo."
+    ]
+  }
+];
+
+
+
+export default function Hero() {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev === 0 ? 1 : 0));
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    // We wrap everything in a single relative section.
+    // min-h-[800px] ensures the section is at least as tall as your original design.
+    <section className="relative -mt-45 pt-40 w-full overflow-hidden flex items-center bg-(--caitee-green)/20">
+      
+      {/* 1. THE FIXED BACKGROUND & OVERLAY (z-0 ensures it stays in the back) */}
+      <div className="absolute inset-0 z-0">
+        
+        
+        <PipesCanvas />
+        
+        {/* The Solid Color Overlay: This div sits directly on top of the image. 
+            I used your royal-blue variable with 80% opacity (/80). 
+            Adjust the opacity number to make the image more or less visible! */}
+        <div className="absolute inset-0"></div>
+        
       </div>
 
-      {/* 3. THE ANIMATED CSS PARTICLE MESH (z-0) */}
-      <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
-        
-        {/* 3D TILT CONTAINER 
-          'perspective' and 'rotateX' lay the grid down like a floor.
-          'scale' makes it large enough to fill the screen.
-        */}
-        <div 
-          className="absolute w-[200vw] h-[200vh] [transform:perspective(800px)_rotateX(60deg)_translateY(-100px)_scale(1.5)]"
-          style={{
-            // Radial mask to softly fade out the edges into the background
-            maskImage: 'radial-gradient(ellipse at center, black 10%, transparent 60%)',
-            WebkitMaskImage: 'radial-gradient(ellipse at center, black 10%, transparent 60%)',
-          }}
-        >
+      {/* 2. YOUR HERO CONTENT (z-10 ensures it sits on top of the background) */}
+      <div className={`
+      flex flex-col relative mx-auto 
+      xl:flex-row justify-between
+      gap-10 z-10 my-20
+      px-20
+      `}>
+  
+        {/* The Glass Container */}
+        <div className={`
+          bg-[var(--not-white)]/70 backdrop-blur-xl
+          shadow-2xl rounded-3xl border border-white
+          p-10 
+        `}>
+          <h1 className="text-5xl sm:text-7xl  md:text-7xl font-bold leading-tight xl:w-4/5">
+            Transformações  <br /> software<br />
+            <span className={`
+            bg-linear-to-r from-(--highlighted-text) 
+            to-(--royal-blue) 
+            bg-clip-text text-transparent
+            
+            `} >On demand.</span>
+          </h1>
           
-          {/* THE DOT MATRIX CUTOUT
-            This cuts physical holes into the div. Only color behind these holes is visible.
-          */}
-          <div 
-            className="absolute inset-0"
-            style={{
-              maskImage: 'radial-gradient(circle, black 1.5px, transparent 2px)',
-              maskSize: '32px 32px', // Adjust this to make dots closer or further apart
-              WebkitMaskImage: 'radial-gradient(circle, black 1.5px, transparent 2px)',
-              WebkitMaskSize: '32px 32px',
-            }}
-          >
-            {/* Layer A: The base color of the dots (#64748B) covering everything */}
-            <div className="absolute inset-0 bg-[#64748B] opacity-60"></div>
+          <button className={`
+            mt-8 bg-[var(--not-white)]/70
+            px-6 py-3 rounded-lg font-semibold 
+            flex items-center gap-2
+            shadow-xl border border-white
 
-            {/* Layer B: The animated pulse color (#4462f6) sliding over the top 
-              - w-[200%] makes it twice as wide as the screen.
-              - animate-pulse-sweep (from CSS) pulls it to the left forever.
-            */}
-            <div className="absolute inset-0 w-[200%] h-full animate-pulse-sweep">
-              {/* The gradient configuration: mostly transparent, solid blue in the middle, transparent at the end */}
-              <div className="w-full h-full bg-[linear-gradient(to_left,transparent_0%,transparent_30%,#4462f6_50%,transparent_70%,transparent_100%)]"></div>
+            /* --- ANIMATION RULES --- */
+            transition-all duration-300
+
+            /* --- HOVER RULES --- */
+            hover:bg-[var(--caitee-green)] hover:scale-105
+            hover:border-[var(--caitee-green)] hover:text-white
+
+            /* --- SUCCESS RULES --- */
+            active:scale-90 active:bg-[var(--highlighted-text)]
+            active:border active:border-[var(--highlighted-text)]
+          `}>
+            Fale com um expert <span className="text-xl">→</span>
+          </button>
+        </div>
+      {/* second The Glass Container */}
+        <div className={`
+          bg-[var(--not-white)]/70 backdrop-blur-xl
+          shadow-2xl rounded-3xl border border-white
+          p-10
+        `}>
+          <h1 className={`
+          text-3xl font-bold relative inline-block pb-2
+          `}>
+            Construção de{' '}
+            <span className="relative inline-block overflow-hidden align-bottom">
+              {/* Hidden spacer to maintain width */}
+              <span className="invisible select-none">sistemas</span>
+              
+              {/* Outgoing Word */}
+              <span 
+                key={`out-${activeIndex}`} 
+                className="absolute left-0 top-0 text-[var(--caitee-green)] animate-knock-out"
+              >
+                {contentData[activeIndex === 0 ? 1 : 0].title}
+              </span>
+
+              {/* Incoming Word */}
+              <span 
+                key={`in-${activeIndex}`} 
+                className="absolute left-0 top-0 text-[var(--caitee-green)] animate-knock-in"
+              >
+                {contentData[activeIndex].title}
+              </span>
+            </span>
+
+            {/* Animated Underline */}
+            <span 
+              key={activeIndex} 
+              className="absolute left-0 bottom-0 h-1 bg-[var(--caitee-green)] animate-expand"
+            ></span>
+          </h1>
+
+          <div className={`
+            my-5 text-xl grid [grid-template-areas:'stack']
+            `}>
+            {/* Outgoing lines */}
+            <div 
+              key={`out-text-${activeIndex}`} 
+              className="[grid-area:stack] animate-fade-out-right"
+            >
+              {contentData[activeIndex === 0 ? 1 : 0].lines.map((line, idx) => (
+                <p key={idx}>{line}</p>
+              ))}
+            </div>
+
+            {/* Incoming lines */}
+            <div 
+              key={`in-text-${activeIndex}`} 
+              className="[grid-area:stack] animate-fade-in-left"
+            >
+              {contentData[activeIndex].lines.map((line, idx) => (
+                <p key={idx}>{line}</p>
+              ))}
             </div>
           </div>
           
+          <button className={`
+            mt-8 bg-[var(--not-white)]/70
+            px-6 py-3 rounded-lg font-semibold 
+            flex items-center gap-2
+            shadow-xl border border-white
+
+            /* --- ANIMATION RULES --- */
+            transition-all duration-300
+
+            /* --- HOVER RULES --- */
+            hover:bg-[var(--caitee-green)] hover:scale-105
+            hover:border-[var(--caitee-green)] hover:text-white
+
+            /* --- SUCCESS RULES --- */
+            active:scale-90 active:bg-[var(--highlighted-text)]
+            active:border active:border-[var(--highlighted-text)]
+          `}>
+            Fale com um expert <span className="text-xl">→</span>
+          </button>
         </div>
+        
       </div>
       
     </section>
