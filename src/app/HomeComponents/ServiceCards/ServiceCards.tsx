@@ -77,7 +77,7 @@ const ServiceCards = () => {
             hover:text-(--not-white)
             
             /* --- SUCCESS RULES --- */
-            active:scale-90
+            active:scale-90 active:bg-(--highlighted-text) active:text-white
             `}
             >
               Saiba Mais

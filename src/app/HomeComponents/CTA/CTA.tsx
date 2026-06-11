@@ -38,7 +38,7 @@ const CTA  = () => {
 
   return (
 
-    <div className={`
+    <div id="sobre" className={`
       flex flex-col relative mx-auto 
       xl:flex-row justify-between items-center gap-10
       z-10 my-20
@@ -82,11 +82,12 @@ const CTA  = () => {
             hover:text-(--not-white)
             
             /* --- SUCCESS RULES --- */
-            active:scale-90
+            active:scale-90 active:bg-(--highlighted-text)
+            active:text-white
             `}
-            onClick={() => {window.location.href='/sobre'}}
+            onClick={() => {window.open("https://api.whatsapp.com/send/?phone=5519995943486&text&type=phone_number&app_absent=0")}}
             >
-            Entrar em contato
+            Entre em contato
           </button>
       </div>
       

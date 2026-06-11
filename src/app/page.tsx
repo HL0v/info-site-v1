@@ -1,13 +1,11 @@
-import Hero from "@/uiComponents/Hero/Hero";
-import Header from "../uiComponents/Header/Header";
-import CTA from "@/uiComponents/CTA/CTA";
-import ServiceCards from "@/uiComponents/ServiceCards/ServiceCards";
+import Hero from "@/app/HomeComponents/Hero/Hero";
+import CTA from "@/app/HomeComponents/CTA/CTA";
+import ServiceCards from "@/app/HomeComponents/ServiceCards/ServiceCards";
 
 
 export default function Home() {
   return (
     <>
-      <Header/>
       <Hero/>
       <ServiceCards/>
       <CTA/>

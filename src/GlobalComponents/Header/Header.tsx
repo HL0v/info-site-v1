@@ -6,7 +6,7 @@ import Link from 'next/link';
 const navLinks = [
   { name: 'Home', href: '/' },
   { name: 'Serviços', href: '/servicos' },
-  { name: 'Sobre', href: '/sobre' },
+  { name: 'Sobre', href: '/#sobre' },
   { name: 'Portfólio', href: '/portfolio' },
 ];
 
@@ -31,8 +31,8 @@ export default function Header() {
   return (
     <>
       {/* 1. THE STATIONARY SOCKET (The Hole) */}
-      <div className="absolute top-20 left-0 right-0 mx-auto w-[95%] md:w-[85%] h-20 z-10 pointer-events-none z-10">
-        <div 
+      <div className="absolute top-20 left-0 right-0 mx-auto w-[80%] md:w-[80%] h-20 z-10 pointer-events-none z-10">
+        <div id=""
           className={`
             w-full h-full rounded-3xl bg-black/10 
             transition-opacity duration-500 ease-in-out
@@ -43,7 +43,7 @@ export default function Header() {
 
       {/* 2. THE STICKY HEADER WRAPPER */}
       
-      <header className="sticky top-20 mx-auto w-[95%] md:w-[85%] z-30 mt-10 mb-10">
+      <header className="sticky top-20 mx-auto w-[80%] md:w-[80%] z-30 mt-10 mb-10">
         
         {/* THE SINGLE PANE OF GLASS
           This ONE div handles the background, blur, shadow, and borders for EVERYTHING.
@@ -162,7 +162,7 @@ export default function Header() {
               {navLinks.map((link) => (
               <Link
                   key={link.name}
-                  href={link.href}
+                  href={link.href} replace scroll={true}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={`
                     block px-3 py-2 rounded-md text-base 
