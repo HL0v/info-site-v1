@@ -3,13 +3,13 @@ import { useEffect, useState } from "react";
 
 
 const carousel = [
-  'ascensao-fullview.jpg',
-  'eppej-membros-corta-direita.jpg',
-  'eppej-membros-pintados.jpg',
-  'foto-midia-caitee.jpg',
-  'impu_full-ej-mm.jpg',
-  'impulsione-fullview.jpg',
-  'info-girls-sla.jpg',
+  'https://res.cloudinary.com/dxbk6cgin/image/upload/v1781153494/ascensao-fullview_vysb8p.jpg',
+  'https://res.cloudinary.com/dxbk6cgin/image/upload/v1781153501/eppej-membros-corta-direita_wv7eak.jpg',
+  'https://res.cloudinary.com/dxbk6cgin/image/upload/v1781153507/eppej-membros-pintados_biddip.jpg',
+  'https://res.cloudinary.com/dxbk6cgin/image/upload/v1781153515/foto-midia-caitee_j5j7om.jpg',
+  'https://res.cloudinary.com/dxbk6cgin/image/upload/v1781153527/impu_full-ej-mm_adflt8.jpg',
+  'https://res.cloudinary.com/dxbk6cgin/image/upload/v1781153533/impulsione-fullview_vuqyru.jpg',
+  'https://res.cloudinary.com/dxbk6cgin/image/upload/v1781153539/info-girls-sla_l5qtfe.jpg',
   
 ];
 
