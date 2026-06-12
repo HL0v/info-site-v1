@@ -29,21 +29,9 @@ export default function Header() {
   }, []);
 
   return (
-    <>
-      {/* 1. THE STATIONARY SOCKET (The Hole) */}
-      <div className="absolute top-20 left-0 right-0 mx-auto w-[80%] md:w-[80%] h-20 z-10 pointer-events-none z-10">
-        <div id=""
-          className={`
-            w-full h-full rounded-3xl bg-black/10 
-            transition-opacity duration-500 ease-in-out
-            ${isScrolled ? 'opacity-100 shadow-[inset_0_10px_20px_rgba(0,0,0,0.5)]' : 'opacity-0'}
-          `}
-        ></div>
-      </div>
-
+    <>  
       {/* 2. THE STICKY HEADER WRAPPER */}
-      
-      <header className="sticky top-20 mx-auto w-[80%] md:w-[80%] z-30 mt-10 mb-10">
+      <header className=" top-2 top-20 mx-auto w-[80%] md:w-[80%] z-30 mt-10 lg:mt-10 mb-10">
         
         {/* THE SINGLE PANE OF GLASS
           This ONE div handles the background, blur, shadow, and borders for EVERYTHING.
@@ -53,13 +41,7 @@ export default function Header() {
           relative w-full transition-all duration-1000 ease-out 
            rounded-3xl overflow-hidden 
            backdrop-blur-xl border border-white bg-(--not-white)/70
-          ${
-            isScrolled 
-            //scrolled 'isScrolled -> true'
-            ? 'md:-translate-y-3 md:-translate-x-3 shadow-[15px_15px_25px_rgba(0,0,0,0.2)] ' 
-            //top screen 'isScrolled -> false'
-            : 'md:translate-y-0 md:translate-x-0 shadow-none  '
-          }
+          
           ${isMobileMenuOpen 
             ? `border border-white`
             : `border border-transparent`
@@ -67,8 +49,7 @@ export default function Header() {
         `}>
           
           {/* --- TOP BAR --- */}
-          <div className="flex justify-between items-center h-20 w-full px-4 sm:px-6 lg:px-8">
-            
+          <div className="flex justify-between items-center h-15 h-20 w-full px-4 sm:px-6 lg:px-8">
             {/* Logo Area */}
             <div className="flex-shrink-0 flex items-center ">
               <Link href="/" className="flex items-center transition-transform hover:scale-105 active:scale-95">
