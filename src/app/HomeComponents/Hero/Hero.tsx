@@ -100,7 +100,9 @@ export default function Hero() {
             /* --- SUCCESS RULES --- */
             active:scale-90 active:bg-[var(--highlighted-text)]
             active:border active:border-[var(--highlighted-text)]
-          `}>
+          `}
+          onClick={() => {window.open("https://api.whatsapp.com/send/?phone=5519995943486&text&type=phone_number&app_absent=0")}}
+          >
             Fale com um expert <span className="text-xl">→</span>
           </button>
         </div>
